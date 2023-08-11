@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 Infrastructure.ConfigureDatabase(builder);
 Infrastructure.ConfigureService(builder);
+Infrastructure.ConfigureAuthentication(builder);
 
 var app = builder.Build();
 
@@ -21,11 +22,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

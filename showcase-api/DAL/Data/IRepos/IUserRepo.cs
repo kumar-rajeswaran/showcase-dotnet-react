@@ -1,6 +1,6 @@
 using Shared.Entities;
 
-namespace DAL.Data.IRepos;
+namespace DAL.Data;
 
 public interface IUserRepo
 {

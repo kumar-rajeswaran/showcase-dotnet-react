@@ -1,9 +1,9 @@
-using DAL.Data.IRepos;
+using DAL.Data;
 using DAL.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
 
-namespace DAL.Data.Repos;
+namespace DAL.Data;
 
 public class UserRepo : IUserRepo
 {
