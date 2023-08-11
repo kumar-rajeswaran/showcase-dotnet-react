@@ -34,7 +34,6 @@ public class Infrastructure
     public static void ConfigureAuthentication(WebApplicationBuilder builder)
     {
         builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        builder.Services.AddTransient<UserResolverService>();
         builder.Services.AddAuthorization();
         builder.Services
             .AddAuthentication(options =>
