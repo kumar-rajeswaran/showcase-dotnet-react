@@ -14,20 +14,20 @@ public class UserRepo : IUserRepo
         _showCaseDbContext = showCaseDbContext;
     }
 
-    public async Task<TblUsers> UserSignUp(TblUsers entity)
+    public async Task<TblUsers?> UserSignUp(TblUsers entity)
     {
         var userData = await _showCaseDbContext.TblUsers.AddAsync(entity);
         await _showCaseDbContext.SaveChangesAsync();
         return userData.Entity;
     }
 
-    public async Task<TblUsers> GetUser(int id)
+    public async Task<TblUsers?> GetUser(int id)
     {
         var res = await _showCaseDbContext.TblUsers.FirstOrDefaultAsync(x => x.Id == id);
         return res;
     }
 
-    public async Task<TblUsers> GetUserByEmail(string email)
+    public async Task<TblUsers?> GetUserByEmail(string email)
     {
         var res = await _showCaseDbContext.TblUsers.FirstOrDefaultAsync(x => x.Email == email);
         return res;

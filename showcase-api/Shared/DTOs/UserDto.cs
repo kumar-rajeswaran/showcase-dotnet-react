@@ -2,15 +2,15 @@ namespace Shared.DTOs;
 
 public class UserDto
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
     public int Age { get; set; }
-    public string Email { get; set; }
+    public required string Email { get; set; }
 }
 
 public class UserSignUpDto : UserDto
 {
-    public string Password { get; set; }
+    public required string Password { get; set; }
 }
 
 public class UserResponseDto : UserDto
@@ -20,12 +20,12 @@ public class UserResponseDto : UserDto
 
 public class UserLoginDto
 {
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public required string Email { get; set; }
+    public required string Password { get; set; }
 }
 
 public class LoginResponseDto : UserDto
 {
     public int Id { get; set; }
-    public string Token { get; set; }
+    public required string Token { get; set; }
 }

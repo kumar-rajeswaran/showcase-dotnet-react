@@ -5,7 +5,7 @@ namespace BLL.Mappers;
 
 public static class CommonResponseMapper<T>
 {
-    public static CommonResponse<T> GetResponse(T data, HttpStatusCode statusCode)
+    public static CommonResponse<T> GetResponse(T? data, HttpStatusCode statusCode)
     {
         return new CommonResponse<T>
         {
