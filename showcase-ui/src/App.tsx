@@ -1,11 +1,11 @@
-import { Container } from "react-bootstrap";
-import Login from "./containers/login";
+import { ThemeProvider } from "react-bootstrap";
+import AppRouter from "routes/app-router";
 
 function App() {
   return (
-    <Container>
-      <Login />
-    </Container>
+    <ThemeProvider breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]} minBreakpoint="xxs">
+      <AppRouter />
+    </ThemeProvider>
   );
 }
 

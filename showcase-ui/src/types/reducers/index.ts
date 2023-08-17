@@ -1,7 +1,7 @@
 import { IUser } from "../common";
 
 export interface IStore {
-  coverageReport: IAuthReducer;
+  auth: IAuthReducer;
 }
 
 export interface IActionWithPayload<T> {

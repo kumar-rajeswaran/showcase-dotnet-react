@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open --host",
+    "dev": "vite --open --host --port 3005",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@types/redux-logger": "^3.0.9",
+    "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
     "react": "^18.2.0",
@@ -21,9 +22,11 @@
     "react-router-dom": "^6.15.0",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.2.3",
-    "sass": "^1.65.1"
+    "sass": "^1.65.1",
+    "vite-tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
+    "@types/node": "^20.5.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
