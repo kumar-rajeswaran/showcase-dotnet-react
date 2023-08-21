@@ -1,7 +1,7 @@
 import { Nav, NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const SideBar = () => {
+export const SideMenu = () => {
   return (
     <Nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar vh-100">
       <NavItem>

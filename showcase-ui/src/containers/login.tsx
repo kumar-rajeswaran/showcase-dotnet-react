@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ function Login() {
           <Form.Control
             type="text"
             required
-            placeholder="Enter your username"
+            placeholder="Enter your Email"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />

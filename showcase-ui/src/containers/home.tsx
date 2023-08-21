@@ -1,4 +1,4 @@
-import { Button, Card, Carousel, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
+import { Button, Card, Carousel, Container, Nav, Navbar, Row } from "react-bootstrap";
 
 export default function Home() {
   return (
