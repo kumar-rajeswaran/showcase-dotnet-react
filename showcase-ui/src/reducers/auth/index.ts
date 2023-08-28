@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IActionWithOutPayload, IActionWithPayload, IAuthReducer, ILogin, IUser } from "../../types";
+import { IActionWithOutPayload, IActionWithPayload, IAuthReducer, ILogin, IUser } from "types";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 const initialState: IAuthReducer = {
-  isFetching: true,
+  isFetching: false,
   user: {} as IUser,
 };
 export const authSlice = createSlice({
@@ -26,7 +26,7 @@ export const authSlice = createSlice({
 });
 
 const persistConfig = {
-  key: "root",
+  key: "user",
   storage,
   blacklist: ["isFetching"],
 };

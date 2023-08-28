@@ -10,7 +10,6 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: IStore) => state.auth.user);
-  const isFetching = useSelector((state: IStore) => state.auth.isFetching);
   useEffect(() => {
     if (user && user.token) {
       navigate("/me");
@@ -31,7 +30,7 @@ function Login() {
       <Row>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="my-3">
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="text"
               required
@@ -56,7 +55,6 @@ function Login() {
             </Button>
           </Form.Group>
         </Form>
-        <span>{isFetching ? "loading" : null}</span>
       </Row>
     </Container>
   );
