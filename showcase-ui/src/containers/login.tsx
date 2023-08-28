@@ -16,7 +16,8 @@ function Login() {
       navigate("/me");
     }
   }, [navigate, user]);
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch(
       doLogin({
         Email: username,
@@ -28,31 +29,33 @@ function Login() {
   return (
     <Container className="d-flex justify-content-center align-items-center vh-100">
       <Row>
-        <Form.Group className="my-3">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            required
-            placeholder="Enter your Email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="my-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            required
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="my-3 d-flex justify-content-end">
-          <Button variant="primary" onClick={() => handleSubmit()}>
-            Login
-          </Button>
-        </Form.Group>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="my-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              required
+              placeholder="Enter your Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="my-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              required
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="my-3 d-flex justify-content-end">
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </Form.Group>
+        </Form>
         <span>{isFetching ? "loading" : null}</span>
       </Row>
     </Container>
