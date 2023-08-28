@@ -1,16 +1,11 @@
 import "assets/styles/loader.scss";
+import { useSelector } from "react-redux";
+import { IStore } from "types";
 export const AppLoader = () => {
-  return (
-    <div className="loading-container">
-      <div className="loading-text">
-        <span>L</span>
-        <span>O</span>
-        <span>A</span>
-        <span>D</span>
-        <span>I</span>
-        <span>N</span>
-        <span>G</span>
-      </div>
+  const { isFetching } = useSelector((state: IStore) => state.auth);
+  return isFetching ? (
+    <div className="loader-container">
+      <span className="loader"></span>
     </div>
-  );
+  ) : null;
 };

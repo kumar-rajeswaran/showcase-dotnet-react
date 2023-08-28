@@ -3,7 +3,7 @@ import { IActionWithOutPayload, IActionWithPayload, IAuthReducer, ILogin, IUser 
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 const initialState: IAuthReducer = {
-  isFetching: false,
+  isFetching: true,
   user: {} as IUser,
 };
 export const authSlice = createSlice({
