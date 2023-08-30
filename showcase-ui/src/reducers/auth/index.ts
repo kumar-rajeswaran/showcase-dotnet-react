@@ -5,6 +5,7 @@ import { persistReducer } from "redux-persist";
 const initialState: IAuthReducer = {
   isFetching: false,
   user: {} as IUser,
+  error: null,
 };
 export const authSlice = createSlice({
   name: "auth",
@@ -18,8 +19,10 @@ export const authSlice = createSlice({
       state.isFetching = false;
     },
     doLogout: (state: IAuthReducer, _action: IActionWithOutPayload) => {
-      state.isFetching = true;
       state.user = {} as IUser;
+    },
+    setError: (state: IAuthReducer, action: IActionWithPayload<string>) => {
+      state.error = action.payload;
       state.isFetching = false;
     },
   },
@@ -28,8 +31,8 @@ export const authSlice = createSlice({
 const persistConfig = {
   key: "user",
   storage,
-  blacklist: ["isFetching"],
+  blacklist: ["isFetching",'error'],
 };
 export const persistedAuthReducer = persistReducer(persistConfig, authSlice.reducer);
 
-export const { doLogin, setAuthResponse,doLogout } = authSlice.actions;
+export const { doLogin, setAuthResponse, doLogout,setError } = authSlice.actions;

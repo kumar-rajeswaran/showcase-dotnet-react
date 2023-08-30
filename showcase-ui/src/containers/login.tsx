@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form, Row } from "react-bootstrap";
+import { Alert, Button, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { doLogin } from "reducers";
@@ -9,7 +9,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state: IStore) => state.auth.user);
+  const { user, error, isFetching } = useSelector((state: IStore) => state.auth);
   useEffect(() => {
     if (user && user.token) {
       navigate("/me");
@@ -49,11 +49,14 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="my-3 d-flex justify-content-end">
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
-          </Form.Group>
+          {!isFetching ? (
+            <Form.Group className="my-3 d-flex justify-content-end">
+              <Button variant="primary" type="submit">
+                Login
+              </Button>
+            </Form.Group>
+          ) : null}
+          {error != null ? <Alert variant="danger">{error}</Alert> : null}
         </Form>
       </Row>
     </Container>

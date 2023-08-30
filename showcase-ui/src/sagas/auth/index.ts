@@ -1,4 +1,4 @@
-import { authSlice } from "reducers";
+import { authSlice, setError } from "reducers";
 import { PutEffect, put, takeLatest } from "redux-saga/effects";
 import { authService } from "services";
 import { IActionWithPayload, ILogin, IUser } from "types";
@@ -9,6 +9,7 @@ function* callLogin(action: IActionWithPayload<ILogin>): Generator<Promise<IUser
     yield put(setAuthResponse(res));
   } catch (error) {
     console.log("callLogin error", { error });
+    yield put(setError(`${error}`))
   }
 }
 
