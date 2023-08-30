@@ -22,9 +22,6 @@ export const NavBar = () => {
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
           </Nav>
           <Nav>
             <NavDropdown title={user.firstName} id="profile-dropdown">

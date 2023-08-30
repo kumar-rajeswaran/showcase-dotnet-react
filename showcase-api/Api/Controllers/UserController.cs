@@ -37,5 +37,20 @@ namespace Api.Controllers
             var res = await _userService.GetUser(id);
             return StatusCode(res.Status, res);
         }
+
+        [HttpPut]
+        [Authorize]
+        public async Task<IActionResult> UpdateUser(int usersId,UserDto user)
+        {
+            var res = await _userService.UpdateUser(usersId,user);
+            return StatusCode(res.Status, res);
+        }
+        [HttpGet("GetAllUsers")]
+        [Authorize]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var res = await _userService.GetAllUsers();
+            return StatusCode(res.Status, res);
+        }
     }
 }

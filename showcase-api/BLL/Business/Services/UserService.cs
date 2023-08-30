@@ -21,20 +21,46 @@ public class UserService : IUserService
         _userRepo = userRepo;
     }
 
+    public async Task<CommonResponse<List<UserResponseDto>>> GetAllUsers()
+    {
+        var users = await _userRepo.GetAllUsers();
+        return CommonResponseMapper<List<UserResponseDto>>.GetResponse(users.Select(x=>UserMapper.MapToDto(x)).ToList()!,
+            users.Count > 0 ? HttpStatusCode.OK : HttpStatusCode.NoContent);
+    }
+
     public async Task<CommonResponse<UserResponseDto>> GetUser(int id)
     {
         var user = await _userRepo.GetUser(id);
         return CommonResponseMapper<UserResponseDto>.GetResponse(
-            UserMapper.MapToDto(user),
+            user!=null?UserMapper.MapToDto(user):null,
             user != null ? HttpStatusCode.OK : HttpStatusCode.NotFound
         );
+    }
+
+    public async Task<CommonResponse<string>> UpdateUser(int userId,UserDto user)
+    {
+        var res = false;
+        var userData = await _userRepo.GetUser(userId);
+        if (userData == null) res = false;
+        else
+        {
+            userData.FirstName = user.FirstName;
+            userData.LastName = user.LastName;
+            userData.Email = user.Email;
+            userData.Age = user.Age;
+            userData.UpdatedOn = DateTime.Now;
+            res = await _userRepo.UpdateUser(userData);
+        }
+        return CommonResponseMapper<string>.GetResponse(
+            res ? "User Updated Successfully" : "User not updated.Try again!",
+            res ? HttpStatusCode.Accepted : HttpStatusCode.BadRequest);
     }
 
     public async Task<CommonResponse<UserResponseDto>> UserSignUp(UserSignUpDto dto)
     {
         var user = await _userRepo.UserSignUp(UserMapper.MaptoEntity(dto));
         return CommonResponseMapper<UserResponseDto>.GetResponse(
-            UserMapper.MapToDto(user),
+            user!=null?UserMapper.MapToDto(user):null,
             user != null ? HttpStatusCode.Created : HttpStatusCode.BadRequest
         );
     }

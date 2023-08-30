@@ -21,10 +21,21 @@ public class UserRepo : IUserRepo
         return userData.Entity;
     }
 
+    public async Task<List<TblUsers>> GetAllUsers()
+    {
+        return await _showCaseDbContext.TblUsers.ToListAsync();
+    }
+
     public async Task<TblUsers?> GetUser(int id)
     {
         var res = await _showCaseDbContext.TblUsers.FirstOrDefaultAsync(x => x.Id == id);
         return res;
+    }
+
+    public async Task<bool> UpdateUser(TblUsers user)
+    {
+        _showCaseDbContext.TblUsers.Update(user);        
+        return await _showCaseDbContext.SaveChangesAsync() > 0;
     }
 
     public async Task<TblUsers?> GetUserByEmail(string email)

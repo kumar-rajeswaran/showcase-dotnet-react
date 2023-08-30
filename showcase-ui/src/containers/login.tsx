@@ -9,7 +9,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, error, isFetching } = useSelector((state: IStore) => state.auth);
+  const { user, isError, message, isFetching } = useSelector((state: IStore) => state.auth);
   useEffect(() => {
     if (user && user.token) {
       navigate("/me");
@@ -56,7 +56,7 @@ function Login() {
               </Button>
             </Form.Group>
           ) : null}
-          {error != null ? <Alert variant="danger">{error}</Alert> : null}
+          {message != null ? <Alert variant={isError ? "danger" : "success"}>{message}</Alert> : null}
         </Form>
       </Row>
     </Container>

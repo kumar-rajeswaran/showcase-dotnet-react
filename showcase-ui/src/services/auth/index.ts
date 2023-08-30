@@ -4,9 +4,7 @@ import { AxiosError } from "axios";
 const login = async (req: ILogin): Promise<IUser> => {
   let response = {} as IUser;
   await api
-    .post<IApiResponse<IUser>>("/User/login", req, {
-      validateStatus: (status) => status < 500,
-    })
+    .post<IApiResponse<IUser>>("/User/login", req)
     .then((res) => {
       response = res.data.data;
     })

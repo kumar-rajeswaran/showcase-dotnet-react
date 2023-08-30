@@ -15,6 +15,7 @@ export interface IActionWithOutPayload {
 
 export interface IAuthReducer {
   isFetching: boolean;
+  isError: boolean;
   user: IUser;
-  error: string | null;
+  message: string | null;
 }
